@@ -12,21 +12,19 @@ class phoneBookEntry:
         return self.name
     def getPhone(self):
         return self.number
-
     def setPhone(self, phoneNumber):
         if len(phoneNumber) == 10: #phone nums have 10 digits
             self.number = phoneNumber
 
     def __str__(self):
-        formattedNum = "(" + self.number[0:3] + ")" + self.number[3:
-                                            6] + "-" + self.number[6:]
+        formattedNum = "(" + self.number[0:3] + ")" + self.number[3:6] + "-" + self.number[6:]
         return self.name + ": " + formattedNum
 
 class Phonebook:
     def __init__(self):
         self.phoneBook = []
         self.isSorted = False
-
+        
     def addEntry(self, name, phoneNumber):
         entry = phoneBookEntry(name, phoneNumber)
         self.phoneBook.append(entry)
@@ -37,8 +35,7 @@ class Phonebook:
         for front in range(len(self.phoneBook) - 1):
             minPos = front
             for i in range(minPos + 1, len(self.phoneBook)):
-                if ord(self.phoneBook[i].getName()[0]) < ord(self.phoneBook
-                        [minPos].getName()[0]):
+                if ord(self.phoneBook[i].getName()[0]) < ord(self.phoneBook[minPos].getName()[0]):
                     minPos = i
             #swap 'em
             lowest = self.phoneBook[minPos]
@@ -55,12 +52,12 @@ class Phonebook:
             high = len(namesInPhonebook)
             mid = (low + high) // 2
             while namesInPhonebook[mid] != name and low <= high:
-                if name < namesInPhonebook[mid]: #adjust high
+                if name < namesInPhonebook[mid]:
                     high = mid - 1
-                else: #adjust low
+                else:
                     low = mid + 1
                 mid = (low + high) // 2
-            if low > high: #name not in phoneBook
+            if low > high:
                 mid = -1
         else: #not sorted, perform linear search
             for i in range(len(namesInPhonebook)):
